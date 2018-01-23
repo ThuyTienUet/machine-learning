@@ -1,0 +1,16 @@
+<form>
+	<h3>Use model to predict data</h3>
+	<div class="form-group form-inline">
+		<label class="col-sm-3">Model name</label>
+		<select ng-options="x as x.name for x in predict.models track by x.id" 
+				ng-model="predict.model" required></select>
+	</div>
+	<div class="form-group form-inline">
+		<label class="col-sm-3">Observation set</label>
+		<input type="file" accept=".csv" on-read-file="predict.read_data($fileContent)" required>
+	</div>
+	<div class="form-group form-inline">
+		<button class="btn btn-primary" ng-click="predict.predict()">Predict</button>
+	</div>
+</form>
+	
