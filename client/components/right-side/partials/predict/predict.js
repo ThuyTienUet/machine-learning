@@ -40,8 +40,11 @@ angular.module('rightSide')
                                         $(".load").remove();
                                         $("form").css('opacity', '1');
                                         var res = response.data;
+                                        console.log('predict:', res);
                                         if(res.statusCode == 200){
                                             result.result = res.body;
+                                            result.predict = true;
+                                            result.target = res.body.target;
                                             toastr.show('Predict observation success!', 'success');
                                             $location.path('/result');
                                         }else{

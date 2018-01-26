@@ -18,7 +18,7 @@ module.exports.create = function(req, res){
 		body.model_units = req.body.units;
 	request({
 		method: 'POST',
-		url: 'http://127.0.0.1:5000/wipm/api/model',
+		url: 'http://127.0.0.1:2000/wipm/api/model',
 		json: true,
 		body: body
 	}, function (e, response, body) {
@@ -28,35 +28,38 @@ module.exports.create = function(req, res){
 				body: {message: "Call wipm api error!"}
 			})
 			return;
-		}else
-		if(response.statusCode == 200){
-			var model = {
-				id: req.body.type + date,
-				name: req.body.name,
-				type: req.body.type,
-				dims_input: req.body.data[0].length,
-				units: JSON.stringify(req.body.units),
-				params: JSON.stringify(req.body.params),
-				data: JSON.stringify(req.body.data),
-				target: JSON.stringify(req.body.target),
-				mse: body.mse,
-				description: req.body.description
-			}
-			Model.create(model)
-				.then(md => {
-					res.send(response);
-					return;
-				})
-				.catch(e => {
-					res.send({
-						statusCode: 400,
-						body: {message: "Save model to database error!"}
-					})
-					return;
-				})
 		}else{
-			res.send(response);
+			console.log('create model: ', body);
+			if(response.statusCode == 200){
+				var model = {
+					id: req.body.type + date,
+					name: req.body.name,
+					type: req.body.type,
+					dims_input: req.body.data[0].length,
+					units: JSON.stringify(req.body.units),
+					params: JSON.stringify(req.body.params),
+					data: JSON.stringify(req.body.data),
+					target: JSON.stringify(req.body.target),
+					mse: body.mse,
+					description: req.body.description
+				}
+				Model.create(model)
+					.then(md => {
+						res.send(response);
+						return;
+					})
+					.catch(e => {
+						res.send({
+							statusCode: 400,
+							body: {message: "Save model to database error!"}
+						})
+						return;
+					})
+			}else{
+				res.send(response);
+			}
 		}
+		
 		return;
 	})
 	return;
@@ -77,6 +80,7 @@ module.exports.get = function(req, res){
 module.exports.getList = function(req, res){
 	Model.findAll()
 		.then(list => {
+			
 			res.send(list);
 			return;
 		})
@@ -91,7 +95,7 @@ module.exports.getList = function(req, res){
 module.exports.delete = function(req, res){
 	var options = { 
 		method: 'DELETE',
-		url: 'http://127.0.0.1:5000/wipm/api/model/' + req.params.id,
+		url: 'http://127.0.0.1:2000/wipm/api/model/' + req.params.id,
 	};
 	request(options, function (error, response, body) {
 		if (error) {
@@ -101,6 +105,7 @@ module.exports.delete = function(req, res){
 			})
 			return;
 		}else{
+			console.log('delete model: ', body);
 			if(response.statusCode == 200){
 				Model.destroy({
 					where: {
@@ -139,7 +144,7 @@ module.exports.deleteList = function(req, res){
 module.exports.retrain = function(req, res){
 	request({
 		method: 'PUT',
-		url: 'http://127.0.0.1:5000/wipm/api/model',
+		url: 'http://127.0.0.1:2000/wipm/api/model',
 		json: true,
 		body: req.body
 	}, function(e, response, body){
@@ -150,6 +155,7 @@ module.exports.retrain = function(req, res){
 			})
 			return;
 		}else{
+			console.log('retrain model: ', body);
 			if(response.statusCode == 200){
 				Model.update({
 					mse: body.mse

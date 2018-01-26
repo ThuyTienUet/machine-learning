@@ -6,6 +6,7 @@ angular.module('rightSide')
                 url: 'http://localhost:3000/store/api/model/list'
             }).then(function(response){
                     var res = response.data;
+                    console.log('retrain: ', res);
                     if(res.statusCode == 400){
                         toastr.show(res.body + '\n Load page again!', 'danger');
                     }else{

@@ -84,6 +84,7 @@ angular.module('rightSide')
 					url: 'http://localhost:3000/store/api/model/new',
 					data: payload
 				}).then(function(response){
+						console.log('create model:', response.data);
 						$(".load").remove();
 						$("form").css('opacity', '1');
 						var res = response.data;

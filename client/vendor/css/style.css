@@ -50,4 +50,29 @@ html, body, .container-fluid, .row, #left, #right{
   @keyframes spin {
 	0% { transform: rotate(0deg); }
 	100% { transform: rotate(360deg); }
-  }
+	}
+	
+thead, tbody{
+	display: block;
+}
+tbody {
+	max-height: 40rem;
+	overflow-y: overlay;
+}
+tr {
+	display: table;
+	width: 100%;
+}
+th {
+	text-align: center;
+	padding: 0.6em;
+};
+td{
+	padding: 0.3em;
+	text-align: center;
+	/* overflow-x: overlay; */
+}
+table{		
+	background: #F2F2F2;
+	border: 1px solid #ccc;
+}
