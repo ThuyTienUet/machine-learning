@@ -6,7 +6,7 @@ var Model = models.Model;
 module.exports.predict = function(req, res){
 	request({
         method: 'POST',
-        url: 'http://127.0.0.1:2000/wipm/api/model/predict',
+        url: 'http://127.0.0.1:5000/wipm/api/model/predict',
         json: true,
         body: req.body
     }, function(e, response, body){

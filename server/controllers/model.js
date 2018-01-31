@@ -5,9 +5,12 @@ var Model = models.Model;
 
 module.exports.create = function(req, res){
 	var date = new Date();
-	date = JSON.stringify(date);
+	var id = req.body.type + date;
+	id.split(' ').join('');
+	id.split('"').join('-');
+	id.split(':').join('-');
 	var body = {
-		model_id: req.body.type + date,
+		model_id: id,
 		model_type: req.body.type,
 		data: req.body.data,
 		target: req.body.target
@@ -18,7 +21,7 @@ module.exports.create = function(req, res){
 		body.model_units = req.body.units;
 	request({
 		method: 'POST',
-		url: 'http://127.0.0.1:2000/wipm/api/model',
+		url: 'http://127.0.0.1:5000/wipm/api/model',
 		json: true,
 		body: body
 	}, function (e, response, body) {
@@ -32,7 +35,7 @@ module.exports.create = function(req, res){
 			console.log('create model: ', body);
 			if(response.statusCode == 200){
 				var model = {
-					id: req.body.type + date,
+					id: id,
 					name: req.body.name,
 					type: req.body.type,
 					dims_input: req.body.data[0].length,
@@ -41,7 +44,8 @@ module.exports.create = function(req, res){
 					data: JSON.stringify(req.body.data),
 					target: JSON.stringify(req.body.target),
 					mse: body.mse,
-					description: req.body.description
+					description: req.body.description,
+					user_created: req.body.user_created
 				}
 				Model.create(model)
 					.then(md => {
@@ -59,7 +63,6 @@ module.exports.create = function(req, res){
 				res.send(response);
 			}
 		}
-		
 		return;
 	})
 	return;
@@ -78,7 +81,12 @@ module.exports.get = function(req, res){
 	})
 }
 module.exports.getList = function(req, res){
-	Model.findAll()
+	console.log('user: ', req.params.user);
+	Model.findAll({
+		where: {
+			user_created: req.params.user
+		}
+	})
 		.then(list => {
 			
 			res.send(list);
@@ -95,7 +103,7 @@ module.exports.getList = function(req, res){
 module.exports.delete = function(req, res){
 	var options = { 
 		method: 'DELETE',
-		url: 'http://127.0.0.1:2000/wipm/api/model/' + req.params.id,
+		url: 'http://127.0.0.1:5000/wipm/api/model/' + req.params.id,
 	};
 	request(options, function (error, response, body) {
 		if (error) {
@@ -144,7 +152,7 @@ module.exports.deleteList = function(req, res){
 module.exports.retrain = function(req, res){
 	request({
 		method: 'PUT',
-		url: 'http://127.0.0.1:2000/wipm/api/model',
+		url: 'http://127.0.0.1:5000/wipm/api/model',
 		json: true,
 		body: req.body
 	}, function(e, response, body){

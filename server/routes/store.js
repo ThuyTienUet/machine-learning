@@ -6,7 +6,7 @@ router.post('/model/new', function(req, res){
 	ctrlModel.create(req, res);
 	return;
 });
-router.get('/model/list', function(req, res){
+router.get('/model/list/:user', function(req, res){
 	ctrlModel.getList(req, res);
 	return;
 });

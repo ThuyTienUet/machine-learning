@@ -39,6 +39,10 @@ module.exports = function (sequelize, DataTypes) {
         },
         description: {
             type: DataTypes.STRING
+        },
+        user_created: {
+            type: DataTypes.STRING,
+            allowNull: false
         }
     });
 };
