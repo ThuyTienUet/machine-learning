@@ -8,8 +8,8 @@ var db = require('./database/models/db');
 
 app.use(bodyParser.json());
 
-server.listen(3000, function(){
-	console.log('listenning on port 3000');
+server.listen(3001, function(){
+	console.log('listenning on port 3002');
 })
 app.use(function(req, res, next){
 	res.header('Access-Control-Allow-Origin', '*');

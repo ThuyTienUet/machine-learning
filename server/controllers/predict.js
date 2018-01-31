@@ -1,3 +1,5 @@
+
+const wipmApi = 'http://:/wipm/api';
 var request = require('request');
 var models = require('../database/models/db');
 var Data = models.Data;
@@ -6,7 +8,7 @@ var Model = models.Model;
 module.exports.predict = function(req, res){
 	request({
         method: 'POST',
-        url: 'http://127.0.0.1:5002/wipm/api/model/predict',
+        url: wipmApi + '/model/predict',
         json: true,
         body: req.body
     }, function(e, response, body){
