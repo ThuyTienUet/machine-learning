@@ -1,5 +1,6 @@
+const HOST = 'localhost';
+const PORT = 7005;
 
-const wipmApi = 'http://:/wipm/api';
 var request = require('request');
 var models = require('../database/models/db');
 var Data = models.Data;
@@ -8,7 +9,7 @@ var Model = models.Model;
 module.exports.predict = function(req, res){
 	request({
         method: 'POST',
-        url: wipmApi + '/model/predict',
+        url: 'http://'+HOST+':'+PORT+'/wipm/api/model/predict',
         json: true,
         body: req.body
     }, function(e, response, body){

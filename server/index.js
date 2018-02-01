@@ -6,10 +6,12 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var db = require('./database/models/db');
 
+const PORT = 3000;
+
 app.use(bodyParser.json());
 
-server.listen(3001, function(){
-	console.log('listenning on port 3002');
+server.listen(PORT, function(){
+	console.log('listenning on port ', PORT);
 })
 app.use(function(req, res, next){
 	res.header('Access-Control-Allow-Origin', '*');

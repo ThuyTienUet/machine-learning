@@ -81,7 +81,7 @@ angular.module('rightSide')
 				}
 				$http({
 					method: 'POST',
-					url: 'http://localhost:3000/store/api/model/new',
+					url: '/store/api/model/new',
 					data: payload
 				}).then(function(response){
 						console.log('create model:', response.data);

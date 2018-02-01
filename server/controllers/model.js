@@ -1,4 +1,5 @@
-const wipmApi = 'http://:/wipm/api';
+const HOST = 'localhost';
+const PORT = 7005;
 
 var request = require('request');
 var models = require('../database/models/db');
@@ -23,7 +24,7 @@ module.exports.create = function(req, res){
 		body.model_units = req.body.units;
 	request({
 		method: 'POST',
-		url: wipmApi + '/model',
+		url: 'http://'+HOST+':'+PORT+'/wipm/api/model',
 		json: true,
 		body: body
 	}, function (e, response, body) {
@@ -105,7 +106,7 @@ module.exports.getList = function(req, res){
 module.exports.delete = function(req, res){
 	var options = { 
 		method: 'DELETE',
-		url: wipmApi + '/model/' + req.params.id,
+		url: 'http://'+HOST+':'+PORT+'/wipm/api/model/' + req.params.id,
 	};
 	request(options, function (error, response, body) {
 		if (error) {
@@ -154,7 +155,7 @@ module.exports.deleteList = function(req, res){
 module.exports.retrain = function(req, res){
 	request({
 		method: 'PUT',
-		url: wipmApi + '/model',
+		url: 'http://'+HOST+':'+PORT+'/wipm/api/model',
 		json: true,
 		body: req.body
 	}, function(e, response, body){

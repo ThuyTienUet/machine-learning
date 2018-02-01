@@ -3,7 +3,7 @@ angular.module('rightSide')
             var self = this;    
             $http({
                 method: 'GET',
-                url: 'http://localhost:3000/store/api/model/list'
+                url: '/store/api/model/list'+'/nhan'
             }).then(function(response){
                     var res = response.data;
                     console.log('retrain: ', res);
@@ -62,7 +62,7 @@ angular.module('rightSide')
                                 }
                                 $http({
                                     method: 'PUT',
-                                    url: 'http://localhost:3000/store/api/model/retrain/' + self.model.id,
+                                    url: '/store/api/model/retrain/' + self.model.id,
                                     data: payload
                                 }).then(function(response){
                                         $(".load").remove();

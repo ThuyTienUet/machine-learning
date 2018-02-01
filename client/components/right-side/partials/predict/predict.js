@@ -3,7 +3,7 @@ angular.module('rightSide')
 		var self = this;    
             $http({
                 method: 'GET',
-                url: 'http://localhost:3000/store/api/model/list'
+                url: '/store/api/model/list' + '/nhan'
             }).then(function(response){
                     var res = response.data;
                     if(res.statusCode == 400){
@@ -34,7 +34,7 @@ angular.module('rightSide')
                                 }
                                 $http({
                                     method: 'POST',
-                                    url: 'http://localhost:3000/store/api/predict',
+                                    url: '/store/api/predict',
                                     data: payload
                                 }).then(function(response){
                                         $(".load").remove();
