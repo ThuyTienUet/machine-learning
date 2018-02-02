@@ -1,5 +1,5 @@
 const HOST = 'localhost';
-const PORT = 7005;
+const PORT = 5002;
 
 var request = require('request');
 var models = require('../database/models/db');

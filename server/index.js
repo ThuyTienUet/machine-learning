@@ -6,7 +6,7 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var db = require('./database/models/db');
 
-const PORT = 3000;
+const PORT = 3002;
 
 app.use(bodyParser.json());
 
@@ -20,7 +20,7 @@ app.use(function(req, res, next){
 	next();
 })
 app.get('/', function(req, res){
-	res.sendFile(path.join(__dirname, '../client', 'index.html'));
+	res.send("Store API");
 })
 
 app.use(express.static(path.join(__dirname, '../')));
@@ -28,4 +28,5 @@ app.use(express.static(path.join(__dirname, '../')));
 var storeApi = require('./routes/store');
 
 app.use('/store/api', storeApi);
+
 
