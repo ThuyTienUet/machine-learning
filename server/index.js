@@ -8,7 +8,7 @@ var db = require('./database/models/db');
 
 const PORT = 3002;
 
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '100mb'}));
 
 server.listen(PORT, function(){
 	console.log('listenning on port ', PORT);
