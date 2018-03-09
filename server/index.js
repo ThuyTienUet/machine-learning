@@ -20,7 +20,8 @@ app.use(function(req, res, next){
 	next();
 })
 app.get('/', function(req, res){
-	res.sendFile(path.join(__dirname, '../client', 'index.html'));
+	res.send('Store API');
+	// res.sendFile(path.join(__dirname, '../client', 'index.html'));
 })
 
 app.use(express.static(path.join(__dirname, '../')));
