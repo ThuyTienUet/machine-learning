@@ -1,5 +1,5 @@
 const HOST = 'localhost';
-const PORT = 7005;
+const PORT = 4002;
 
 var request = require('request');
 var models = require('../database/models/db');
@@ -83,12 +83,8 @@ module.exports.get = function(req, res){
 	})
 }
 module.exports.getList = function(req, res){
-	console.log('user: ', req.params.user);
-	console.log(Model);
 	Model.findAll({
-		where: {
-			user_created: req.params.user
-		}
+		where: {user_created: req.params.user}
 	})
 		.then(list => {
 			res.send(list);
@@ -115,7 +111,8 @@ module.exports.delete = function(req, res){
 			})
 			return;
 		}else{
-			console.log('delete model: ');
+//			res.send(response);
+		//	console.log('delete model: ', body);
 			if(response.statusCode == 200){
 				Model.destroy({
 					where: {
