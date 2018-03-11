@@ -1,4 +1,4 @@
-const HOST = 'localhost';
+const HOST = '54.169.13.92';
 const PORT = 4002;
 
 var request = require('request');
