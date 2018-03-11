@@ -42,7 +42,7 @@ module.exports.create = function(req, res){
 					name: req.body.name,
 					type: req.body.type,
 					dims_input: req.body.data[0].length,
-					params: JSON.stringify(req.body.params),
+					params: "",
 					data: JSON.stringify(req.body.data),
 					target: JSON.stringify(req.body.target),
 					mse: body.mse,
