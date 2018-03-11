@@ -9,7 +9,7 @@ var Model = models.Model;
 module.exports.predict = function(req, res){
 	request({
         method: 'POST',
-        url: 'http://'+HOST+':'+PORT+'/wipm/api/model/predict',
+        url: 'http://'+HOST+':'+PORT+'/wipm/api/task/regression/anfis/predict',
         json: true,
         body: req.body
     }, function(e, response, body){

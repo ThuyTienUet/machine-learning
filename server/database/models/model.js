@@ -17,10 +17,6 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.INTEGER,
             allowNull: true
         },
-        units: {
-            type: DataTypes.STRING,
-            allowNull: true
-        },
         params: {
             type: DataTypes.STRING,
             allowNull: true

@@ -15,15 +15,16 @@ module.exports.create = function(req, res){
 		model_id: id,
 		model_type: req.body.type,
 		data: req.body.data,
-		target: req.body.target
+		target: req.body.target,
+		params: req.body.params
 	}
-	if(req.body.params != "")
-		body.model_params = req.body.params;
-	if(req.body.units != "")
-		body.model_units = req.body.units;
+	// if(req.body.params != "")
+	// 	body.model_params = req.body.params;
+	// if(req.body.units != "")
+	// 	body.model_units = req.body.units;
 	request({
 		method: 'POST',
-		url: 'http://'+HOST+':'+PORT+'/wipm/api/model',
+		url: 'http://'+HOST+':'+PORT+'/wipm/api/task/regression/model',
 		json: true,
 		body: body
 	}, function (e, response, body) {
@@ -41,7 +42,6 @@ module.exports.create = function(req, res){
 					name: req.body.name,
 					type: req.body.type,
 					dims_input: req.body.data[0].length,
-					units: JSON.stringify(req.body.units),
 					params: JSON.stringify(req.body.params),
 					data: JSON.stringify(req.body.data),
 					target: JSON.stringify(req.body.target),
@@ -101,7 +101,7 @@ module.exports.getList = function(req, res){
 module.exports.delete = function(req, res){
 	var options = { 
 		method: 'DELETE',
-		url: 'http://'+HOST+':'+PORT+'/wipm/api/model/' + req.params.id,
+		url: 'http://'+HOST+':'+PORT+'/wipm/api/task/regression/model/' + req.params.id,
 	};
 	request(options, function (error, response, body) {
 		if (error) {
@@ -151,7 +151,7 @@ module.exports.deleteList = function(req, res){
 module.exports.retrain = function(req, res){
 	request({
 		method: 'PUT',
-		url: 'http://'+HOST+':'+PORT+'/wipm/api/model',
+		url: 'http://'+HOST+':'+PORT+'/wipm/api/task/regression/model',
 		json: true,
 		body: req.body
 	}, function(e, response, body){
