@@ -24,7 +24,7 @@ module.exports.create = function(req, res){
 	// 	body.model_units = req.body.units;
 	request({
 		method: 'POST',
-		url: 'http://'+HOST+':'+PORT+'/wipm/api/task/regression/model',
+		url: 'http://'+HOST+':'+PORT+'/wipm/api/task/regression/curve/model',
 		json: true,
 		body: body
 	}, function (e, response, body) {
@@ -101,7 +101,7 @@ module.exports.getList = function(req, res){
 module.exports.delete = function(req, res){
 	var options = { 
 		method: 'DELETE',
-		url: 'http://'+HOST+':'+PORT+'/wipm/api/task/regression/model/' + req.params.id,
+		url: 'http://'+HOST+':'+PORT+'/wipm/api/task/regression/curve/model/' + req.params.id,
 	};
 	request(options, function (error, response, body) {
 		if (error) {
@@ -151,7 +151,7 @@ module.exports.deleteList = function(req, res){
 module.exports.retrain = function(req, res){
 	request({
 		method: 'PUT',
-		url: 'http://'+HOST+':'+PORT+'/wipm/api/task/regression/model',
+		url: 'http://'+HOST+':'+PORT+'/wipm/api/task/regression/curve/model',
 		json: true,
 		body: req.body
 	}, function(e, response, body){
