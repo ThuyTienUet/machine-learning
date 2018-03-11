@@ -36,7 +36,7 @@ module.exports.create = function(req, res){
 			return;
 		}else{
 			console.log('create model: ', body);
-			if(response.statusCode == 200){
+			if(body.mse){
 				var model = {
 					id: id,
 					name: req.body.name,
