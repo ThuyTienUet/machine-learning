@@ -29,7 +29,7 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: true
         },
-        mse: {
+        loss: {
             type: DataTypes.FLOAT,
             allowNull: false
         },

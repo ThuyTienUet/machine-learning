@@ -15,13 +15,10 @@ module.exports.create = function(req, res){
 		model_id: id,
 		model_type: req.body.type,
 		data: req.body.data,
-		target: req.body.target,
-		params: req.body.params
+		target: req.body.target
 	}
-	// if(req.body.params != "")
-	// 	body.model_params = req.body.params;
-	// if(req.body.units != "")
-	// 	body.model_units = req.body.units;
+	if(req.body.type!='LinearRegression')
+		body.params = req.body.params;
 	request({
 		method: 'POST',
 		url: 'http://'+HOST+':'+PORT+'/wipm/api/task/regression/curve/model',
@@ -36,16 +33,16 @@ module.exports.create = function(req, res){
 			return;
 		}else{
 			console.log('create model: ', body);
-			if(body.mse){
+			if(body.loss){
 				var model = {
 					id: id,
 					name: req.body.name,
 					type: req.body.type,
 					dims_input: req.body.data[0].length,
-					params: "",
+					params: JSON.stringify(req.body.params),
 					data: JSON.stringify(req.body.data),
 					target: JSON.stringify(req.body.target),
-					mse: body.mse,
+					loss: body.loss,
 					description: req.body.description,
 					user_created: req.body.user_created
 				}
