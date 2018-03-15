@@ -21,7 +21,13 @@ module.exports.predict = function(req, res){
 			return;
 		}else{
 			console.log('predict: ', body);
-			res.send(response)
+			if(body.target)
+				res.send(response);
+			else
+				res.send({
+					statusCode: 400,
+					body: {message: body.message}
+				});
 			return;
 		}
     })

@@ -48,7 +48,10 @@ module.exports.create = function(req, res){
 				}
 				Model.create(model)
 					.then(md => {
-						res.send(response);
+						//let temp = {statusCode: response.statusCode, body: response.body};
+						//temp.model_id = id;
+						//response.data.body.model_id = id;
+						res.send({statusCode: 200, body: response.body, model_id: id});
 						return;
 					})
 					.catch(e => {
