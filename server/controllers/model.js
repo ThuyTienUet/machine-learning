@@ -59,7 +59,10 @@ module.exports.create = function(req, res){
 						return;
 					})
 			}else{
-				res.send(response);
+				res.send({
+					statusCode: 400,
+					body: {message: body.message}
+				});
 			}
 		}
 		return;
