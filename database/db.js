@@ -5,7 +5,7 @@ var Sequelize = require('sequelize');
 var basename = path.basename(module.filename);
 var sequelize = new Sequelize("machine-learning", "root", "", {
     dialect: 'sqlite',
-    storage: './machine-learning.sqlite'
+    storage: 'machine-learning.sqlite'
 });
 
 var db = {};
