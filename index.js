@@ -4,11 +4,9 @@ var http = require('http');
 var server = http.createServer(app);
 var path = require('path');
 var bodyParser = require('body-parser');
-var db = require('./database/models/db');
+var db = require('./database/db');
 
 const PORT = 3002;
-
-app.use(bodyParser.json({limit: '100mb'}));
 
 server.listen(PORT, function(){
 	console.log('listenning on port ', PORT);
@@ -23,7 +21,7 @@ app.get('/', function(req, res){
 	res.send("Store API");
 })
 
-app.use(express.static(path.join(__dirname, '../')));
+// app.use(express.static(path.join(__dirname, './')));
 
 var storeApi = require('./routes/store');
 
