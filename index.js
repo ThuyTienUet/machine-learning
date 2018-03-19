@@ -11,6 +11,7 @@ const PORT = 3002;
 server.listen(PORT, function(){
 	console.log('listenning on port ', PORT);
 })
+app.use(bodyParser.json());
 app.use(function(req, res, next){
 	res.header('Access-Control-Allow-Origin', '*');
 	res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
@@ -19,7 +20,7 @@ app.use(function(req, res, next){
 })
 app.get('/', function(req, res){
 	res.send("Store API");
-})
+});
 
 // app.use(express.static(path.join(__dirname, './')));
 
