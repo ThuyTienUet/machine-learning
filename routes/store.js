@@ -29,18 +29,35 @@ function doPost(url, payload, callback) {
 	});
 }
 
-router.post('/model/train', function(req, res){
+router.post('/model/train', function(req, res) {
 	var payload = req.body;
 	doPost(TRAIN_MODEL, payload, function(response) {
 		res.send(response);
 	});
 });
 
-router.post('/predict', function(req, res){
+router.post('/predict', function(req, res) {
 	var payload = req.body;
 	doPost( PREDICT, payload, function(response) {
 		res.send(response);
 	});
 });
+
+router.post('/model/save', function(req, res) {
+	var content = JSON.stringify(req.body);
+	Model.create({
+		content: content
+	}).then(model => {
+		res.send({
+			status: 200,
+			content: 'Save model infor success'
+		});
+	}).catch(err => {
+		res.send({
+			status: 400,
+			content: err
+		});
+	});
+})
 
 module.exports = router;
